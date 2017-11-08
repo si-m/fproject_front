@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReactHighcharts from 'react-highcharts' 
-
+import ReactHighcharts 			from 'react-highcharts' 
+import Tweets 							from './Tweets'
 export default class ChartTable extends Component {
 	constructor(props) {
 	  super(props)
 	  this.state = {
-	  	hola: "mundo",
 			configPredictions: {
 	        /* HighchartsConfig */
 	        chart: {
@@ -38,23 +37,23 @@ export default class ChartTable extends Component {
 	            colorByPoint: true,
 	            data: [{
 	                name: 'Negativo',
-	                y: 56.33
+	                y: 56.33,
+	                color: '#d8543c',
 	            }, {
 	                name: 'Positivo',
 	                y: 44.66,
+	                color: '#2c68c9',
 	            }]
 	        }]
 	      }
 	    }
-	}
-	componentWillUpdate(){
-		console.log(this.state.configPredictions.series)
+	    window.state = this.props
 	}
 
   componentWillReceiveProps(nextProps){
   	if(this.props.data !== nextProps.data){
   	  const reduced = this.mapReduce(nextProps.data.predictions)
-  	  this.setState({configPredictions: Object.assign(this.state.configPredictions, {series: [reduced]}), hola: "puto"})
+  	  this.setState({configPredictions: Object.assign(this.state.configPredictions, {series: [reduced]})})
   	}
   }
 
@@ -69,9 +68,11 @@ export default class ChartTable extends Component {
 		const highchartsData = {name: 'Sentimiento',
 																 colorByPoint: true, 
 																 data:[{ name:'Negativo', 
-																 				    y: percentages.negative},
+																 				    y: percentages.negative,
+																				color: '#d8543c',},
 																 			 { name:'Positivo', 
-																 			      y: percentages.positive}]}
+																 			      y: percentages.positive,
+																 			  color: '#2c68c9',}]}
   	return highchartsData
   }
 
@@ -79,7 +80,7 @@ export default class ChartTable extends Component {
 		return (
 			<div>
 	     <ReactHighcharts config={this.state.configPredictions} ></ReactHighcharts>
-	     {this.state.hola}
+	     <Tweets data={this.props.data} />
 			</div>
 		);
 	}

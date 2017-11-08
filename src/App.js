@@ -14,7 +14,7 @@ class App extends Component {
       error: "",
       pending: false,
       success: false,
-      predictions: {}
+      predictions: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.predictText = this.predictText.bind(this)
@@ -52,7 +52,6 @@ class App extends Component {
   
   render() {
     let quantity = null
-    let highcharts = null
     if (this.state.twitter_api) {
       quantity = (<div className="form-group">
                     <label>
@@ -64,7 +63,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">TRABAJO FINAL DE INGENIERIA EN INFORMATICA</h1>
+          <h1 className="App-title">TRABAJO FINAL DE INGENIERÍA EN INFORMÁTICA</h1>
         </header>
         <div className="container">
           <form>
@@ -91,7 +90,7 @@ class App extends Component {
           <button className="btn btn-large" onClick={this.predictText} disabled={this.state.pending}>Analizar</button>
         </div>
         <div style={{'color': 'red'}}>{this.state.error}</div>
-          <div className="container"><ChartTable data={this.state.predictions} /></div>
+          <div className="container"><ChartTable data={this.state.predictions}/></div>
         </div>
     );
   }
