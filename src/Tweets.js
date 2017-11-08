@@ -12,8 +12,8 @@ export default class Tweets extends Component {
       <Table responsive>
         <thead>
         <tr>
-          <th>Texto</th>
-          <th>Sentimiento</th>
+          <th style={{textAlign: 'center'}}>Texto</th>
+          <th style={{textAlign: 'center'}}>Sentimiento</th>
         </tr>
         </thead>
         <tbody>
